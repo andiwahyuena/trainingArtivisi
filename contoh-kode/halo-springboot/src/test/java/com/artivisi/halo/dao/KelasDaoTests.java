@@ -1,7 +1,5 @@
 package com.artivisi.halo.dao;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +13,9 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.threeten.bp.DateTimeUtils;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.ZoneId;
 
 import com.artivisi.halo.HaloSpringbootApplication;
 import com.artivisi.halo.entity.Kelas;
@@ -42,11 +43,11 @@ public class KelasDaoTests {
 	
 	@Test
 	public void testCariKelasBerdasarkanTanggalMulai(){
-		Date mulai = Date.from(LocalDate.parse("2015-10-10")
+		Date mulai = DateTimeUtils.toDate(LocalDate.parse("2015-10-10")
 						.atStartOfDay()
 						.atZone(ZoneId.systemDefault())
 						.toInstant());
-		Date sampai = Date.from(LocalDate.parse("2016-02-01")
+		Date sampai = DateTimeUtils.toDate(LocalDate.parse("2016-02-01")
 				.plusMonths(1)
 				.atStartOfDay()
 				.atZone(ZoneId.systemDefault())
@@ -56,12 +57,12 @@ public class KelasDaoTests {
 		Assert.assertNotNull(hasil);
 		Assert.assertEquals(2, hasil.size());
 		
-		Date mulai2 = Date.from(LocalDate.parse("2016-03-01")
+		Date mulai2 = DateTimeUtils.toDate(LocalDate.parse("2016-03-01")
 				.atStartOfDay()
 				.atZone(ZoneId.systemDefault())
 				.toInstant());
 		
-		Date sampai2 = Date.from(LocalDate.parse("2016-10-01")
+		Date sampai2 = DateTimeUtils.toDate(LocalDate.parse("2016-10-01")
 				.plusMonths(1)
 				.atStartOfDay()
 				.atZone(ZoneId.systemDefault())
